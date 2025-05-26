@@ -1,0 +1,41 @@
+import difflib
+
+# Step 1: Define response database
+response_db = {
+    ("hello", "hi", "hey"): "Hello! How can I assist you today?",
+    ("how are you", "how do you do"): "I'm functioning perfectly, thanks for asking!",
+    ("what is your name", "who are you"): "I’m ChatGPT Lite, your assistant.",
+    ("what is python", "tell me about python"): "Python is a powerful, easy-to-learn programming language.",
+    ("bye", "goodbye", "exit"): "Goodbye! Hope to chat again soon.",
+    ("who created you", "who made you"): "I was created as part of a student project using Python."
+}
+
+# Step 2: Flatten patterns into a searchable list with mapping
+flattened_patterns = {}
+for patterns, response in response_db.items():
+    for pattern in patterns:
+        flattened_patterns[pattern] = response
+
+# Step 3: Function to find closest match using difflib
+def find_best_match(user_input):
+    user_input = user_input.lower().strip()
+    all_patterns = list(flattened_patterns.keys())
+    match = difflib.get_close_matches(user_input, all_patterns, n=1, cutoff=0.6)
+    if match:
+        return flattened_patterns[match[0]]
+    else:
+        return "I'm not sure I understand that. Could you rephrase or try something else?"
+
+# Step 4: Start Chat Loop
+print("="*50)
+print("🤖 Welcome to the Simple Chatbot!")
+print("Type 'exit' to end the chat.")
+print("="*50)
+
+while True:
+    user_input = input("You: ")
+    if user_input.lower().strip() in ("exit", "quit", "bye"):
+        print("Chatbot: Goodbye! 👋 Have a wonderful day.")
+        break
+    response = find_best_match(user_input)
+    print("Chatbot:", response)

@@ -1,0 +1,3 @@
+A chatbot is a computer program designed to simulate conversation with human users. The goal of this project is to create a basic chatbot that can understand and answer simple, frequently asked questions (FAQs) using predefined logic. It operates on a rule-based approach where a user's input is matched against predefined patterns or keywords. If a match is found, the chatbot responds with a relevant answer; otherwise, it provides a default message.
+
+This chatbot serves as a simple yet effective system for handling basic conversational tasks like greetings, basic facts, and predefined queries. While it lacks advanced natural language understanding, it demonstrates how user input can be processed, analyzed, and responded to with logical outputs.
